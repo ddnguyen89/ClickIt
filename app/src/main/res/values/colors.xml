@@ -10,11 +10,11 @@
     <color name="greenTrue">#49FF50</color>
 
     <color name="redFalse">#AD1A0E</color>
-    <color name="redTrue">#EF4438</color>
+    <color name="redTrue">#FF4438</color>
 
     <color name="blueFalse">#2D70A6</color>
-    <color name="blueTrue">#4690CD</color>
+    <color name="blueTrue">#4690FF</color>
 
     <color name="yellowFalse">#CDA505</color>
-    <color name="yellowTrue">#F9CF1B</color>
+    <color name="yellowTrue">#FFCF1B</color>
 </resources>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
+    android:id="@+id/activity_highscore"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -22,7 +23,8 @@
             android:layout_width="200dp"
             android:layout_height="60dp"
             android:src="@drawable/yourscoretv"
-            style="@style/Image" />
+            style="@style/Image"
+            android:rotation="-2"/>
 
         <TextView
             android:id="@+id/scoreTV"
@@ -48,7 +50,8 @@
             android:layout_width="200dp"
             android:layout_height="60dp"
             android:src="@drawable/highscoretv"
-            style="@style/Image" />
+            style="@style/Image"
+            android:rotation="2"/>
 
         <TextView
             android:id="@+id/highscoreTV"
@@ -74,13 +77,13 @@
 
     <ImageButton
         android:id="@+id/quitButton"
+        style="@style/Image"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:src="@drawable/quitbutton"
-        style="@style/Image"
-        android:rotation="-2"
         android:layout_marginLeft="150dp"
-        android:layout_marginRight="150dp" />
+        android:layout_marginRight="150dp"
+        android:rotation="-2"
+        android:src="@drawable/quitbutton" />
 
     <ImageButton
         android:id="@+id/resetScoreButton"
@@ -90,6 +93,7 @@
         style="@style/Image"
         android:layout_marginTop="40dp"
         android:layout_marginLeft="20dp"
-        android:layout_marginRight="200dp"/>
+        android:layout_marginRight="200dp"
+        android:rotation="4"/>
 
 </LinearLayout>

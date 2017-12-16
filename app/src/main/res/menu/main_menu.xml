@@ -1,0 +1,49 @@
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="nguyen.clickit.MainActivity">
+
+    <item
+        android:id="@+id/action_overFlow"
+        android:icon="@drawable/ic_action_name"
+        android:orderInCategory="100"
+        android:title="OverFlow"
+        app:showAsAction="always">
+
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/menu_white"
+                    android:orderInCategory="1"
+                    android:title="@string/menuWhite"
+                    app:showAsAction="never" />
+                <item
+                    android:id="@+id/menu_green"
+                    android:orderInCategory="2"
+                    android:title="@string/menuGreen"
+                    app:showAsAction="never" />
+                <item
+                    android:id="@+id/menu_red"
+                    android:orderInCategory="3"
+                    android:title="@string/menuRed"
+                    app:showAsAction="never" />
+                <item
+                    android:id="@+id/menu_blue"
+                    android:orderInCategory="4"
+                    android:title="@string/menuBlue"
+                    app:showAsAction="never" />
+                <item
+                    android:id="@+id/menu_yellow"
+                    android:orderInCategory="5"
+                    android:title="@string/menuYellow"
+                    app:showAsAction="never" />
+                <item
+                    android:id="@+id/menu_default"
+                    android:orderInCategory="6"
+                    android:title="@string/menuDefault"
+                    app:showAsAction="never" />
+            </group>
+        </menu>
+    </item>
+</menu>
