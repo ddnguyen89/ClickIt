@@ -12,6 +12,7 @@
         app:showAsAction="always">
 
         <menu>
+            <item android:title="Background Color" />
             <group android:checkableBehavior="single">
                 <item
                     android:id="@+id/menu_white"

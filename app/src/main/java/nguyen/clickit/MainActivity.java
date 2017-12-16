@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
     //define widget variables
     private ImageButton playButton, highscoreButton;
 
+    //color variables for background
     private String white = "#FFFFFF";
     private String green = "#96FF8C";
     private String red = "#D73C3C";

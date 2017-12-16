@@ -14,7 +14,6 @@
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
     <style name="Image">
@@ -29,7 +28,7 @@
         <item name="android:shadowColor">#000000</item>
         <item name="android:shadowDx">0</item>
         <item name="android:shadowDy">0</item>
-        <item name="android:shadowRadius">5</item>
+        <item name="android:shadowRadius">10</item>
     </style>
 
 </resources>

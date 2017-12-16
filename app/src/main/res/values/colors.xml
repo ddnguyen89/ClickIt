@@ -4,7 +4,8 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="transparent">#00000000</color>
-    <color name="font">#D03333</color>
+    <color name="font">#FFFFFF</color>
+    <color name="appBar">#000000</color>
 
     <color name="greenFalse">#49B050</color>
     <color name="greenTrue">#49FF50</color>

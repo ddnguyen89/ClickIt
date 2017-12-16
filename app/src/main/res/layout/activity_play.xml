@@ -23,7 +23,7 @@
             android:layout_height="60dp"
             android:src="@drawable/scoretv"
             style="@style/Image"
-            android:rotation="-3"/>
+            android:rotation="-3" />
 
         <TextView
             android:id="@+id/scoreTV"
@@ -33,7 +33,7 @@
             android:textSize="40sp"
             style="@style/TextView"
             android:layout_marginTop="3dp"
-            android:layout_marginLeft="10dp"/>
+            android:layout_marginLeft="10dp" />
 
 
         <ImageView
@@ -43,7 +43,7 @@
             android:src="@drawable/timetv"
             style="@style/Image"
             android:layout_marginLeft="30dp"
-            android:rotation="3"/>
+            android:rotation="3" />
 
         <TextView
             android:id="@+id/timeTV"
@@ -53,14 +53,14 @@
             android:textSize="40sp"
             style="@style/TextView"
             android:layout_marginTop="3dp"
-            android:layout_marginLeft="10dp"/>
+            android:layout_marginLeft="10dp" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="90dp"
         android:gravity="center">
 
         <Button
@@ -74,7 +74,7 @@
             android:layout_width="110dp"
             android:layout_height="110dp"
             android:background="@drawable/red_button"
-            android:layout_marginLeft="20dp"/>
+            android:layout_marginLeft="20dp" />
     </LinearLayout>
 
     <LinearLayout
@@ -95,19 +95,19 @@
             android:layout_width="110dp"
             android:layout_height="110dp"
             android:background="@drawable/yellow_button"
-            android:layout_marginLeft="20dp"/>
+            android:layout_marginLeft="20dp" />
     </LinearLayout>
 
 
     <ImageButton
         android:id="@+id/quitButton"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="70dp"
         android:src="@drawable/quitbutton"
         style="@style/Image"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="100dp"
         android:layout_marginLeft="250dp"
         android:layout_marginRight="30dp"
-        android:rotation="10"/>
+        android:rotation="10" />
 
 </LinearLayout>

@@ -24,7 +24,7 @@
             android:layout_height="60dp"
             android:src="@drawable/yourscoretv"
             style="@style/Image"
-            android:rotation="-2"/>
+            android:rotation="-2" />
 
         <TextView
             android:id="@+id/scoreTV"
@@ -42,8 +42,8 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginTop="20dp"
-        android:gravity="center"
-        android:layout_marginRight="50dp">
+        android:layout_marginRight="50dp"
+        android:gravity="center">
 
         <ImageView
             android:id="@+id/highscoreImage"
@@ -51,7 +51,7 @@
             android:layout_height="60dp"
             android:src="@drawable/highscoretv"
             style="@style/Image"
-            android:rotation="2"/>
+            android:rotation="2" />
 
         <TextView
             android:id="@+id/highscoreTV"
@@ -67,11 +67,11 @@
     <ImageButton
         android:id="@+id/playAgainButton"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="70dp"
         android:src="@drawable/playagainbutton"
         style="@style/Image"
         android:rotation="-2"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="70dp"
         android:layout_marginLeft="70dp"
         android:layout_marginRight="70dp" />
 
@@ -79,7 +79,8 @@
         android:id="@+id/quitButton"
         style="@style/Image"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="70dp"
         android:layout_marginLeft="150dp"
         android:layout_marginRight="150dp"
         android:rotation="-2"
@@ -88,12 +89,12 @@
     <ImageButton
         android:id="@+id/resetScoreButton"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="50dp"
         android:src="@drawable/resetscorebutton"
         style="@style/Image"
-        android:layout_marginTop="40dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="200dp"
+        android:layout_marginTop="90dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="190dp"
         android:rotation="4"/>
 
 </LinearLayout>

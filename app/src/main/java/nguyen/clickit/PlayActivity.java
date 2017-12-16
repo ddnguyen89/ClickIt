@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.graphics.Color;
 import android.os.CountDownTimer;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -24,17 +25,24 @@ public class PlayActivity extends AppCompatActivity implements OnClickListener {
     private Button greenButton, redButton, blueButton, yellowButton;
     private ImageButton quitButton;
 
+    //variables used to store inputs of simon and user
     private int simon;
     private int user;
 
+    //variables to store score and highscore
     private int score = 0;
     private int highscore;
 
+    //variable color with a default color value
     private String color = "#00FFFF";
 
     //countdowntimer with timelimit for game
     CountDownTimer timer;
     private int timeLimit = 12000;
+
+    //creating a handler to set a delay for when the game starts
+    Handler setDelay = new Handler();
+    Runnable startDelay;
 
     //creating sharedpreferences to get savedbackground and store savedscores
     private SharedPreferences savedBackground;
@@ -65,17 +73,13 @@ public class PlayActivity extends AppCompatActivity implements OnClickListener {
 
         quitButton.setOnClickListener(this);
 
-        playGame();
-
         //getting background color value from sharedpreference
         savedBackground = getSharedPreferences("savedBackground", MODE_PRIVATE);
         color = savedBackground.getString("background", "#00FFFF");
 
-        //setting stored value into current layout, activity_main
+        //setting stored value into current layout, activity_play
         LinearLayout play_view = (LinearLayout) findViewById(R.id.activity_play);
         play_view.setBackgroundColor(Color.parseColor(color));
-
-
 
         //setting savedscores from sharedpreferences with userscore of 0;
         savedScores = getSharedPreferences("savedScores", MODE_PRIVATE);
@@ -83,6 +87,29 @@ public class PlayActivity extends AppCompatActivity implements OnClickListener {
         editor.putInt("userScore", 0).commit();
 
         highscore = savedScores.getInt("highScore", 0);
+
+        //setting all buttons enabled to false
+        //prevents click during delay
+        greenButton.setEnabled(false);
+        redButton.setEnabled(false);
+        blueButton.setEnabled(false);
+        yellowButton.setEnabled(false);
+        quitButton.setEnabled(false);
+
+        //create a new delay for when the game starts
+        //after delay is complete, start game and set buttons enabled to true
+        startDelay = new Runnable() {
+            @Override
+            public void run() {
+                playGame();
+                greenButton.setEnabled(true);
+                redButton.setEnabled(true);
+                blueButton.setEnabled(true);
+                yellowButton.setEnabled(true);
+                quitButton.setEnabled(true);
+            }
+        };
+        setDelay.postDelayed(startDelay, 700);
     }
 
     @Override
@@ -151,7 +178,6 @@ public class PlayActivity extends AppCompatActivity implements OnClickListener {
         } else {
             matchStatement = false;
         }
-
         return matchStatement;
     }
 
