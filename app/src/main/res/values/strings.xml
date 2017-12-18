@@ -3,6 +3,7 @@
     <string name="high_score_tv">0</string>
     <string name="score_tv">0</string>
     <string name="time_tv">0.00</string>
+
     <string name="menuWhite">White</string>
     <string name="menuGreen">Green</string>
     <string name="menuRed">Red</string>

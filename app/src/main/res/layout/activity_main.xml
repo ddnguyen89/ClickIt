@@ -29,7 +29,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:src="@drawable/clickittitle"
-        android:rotation="-2"
+        android:rotation="-3"
         android:layout_marginTop="40dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp" />
@@ -40,7 +40,7 @@
         android:layout_height="wrap_content"
         android:src="@drawable/playbutton"
         style="@style/Image"
-        android:rotation="2"
+        android:rotation="3"
         android:layout_marginTop="60dp"
         android:layout_marginLeft="120dp"
         android:layout_marginRight="120dp" />
@@ -48,11 +48,22 @@
     <ImageButton
         android:id="@+id/highscoreButton"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="100dp"
         android:src="@drawable/highscorebutton"
         style="@style/Image"
-        android:rotation="-2"
+        android:rotation="-3"
         android:layout_marginTop="40dp"
         android:layout_marginLeft="70dp"
         android:layout_marginRight="70dp" />
+    
+    <ImageButton
+        android:id="@+id/howToPlayButton"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:src="@drawable/howtoplaytv"
+        style="@style/Image"
+        android:rotation="3"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="200dp"
+        android:layout_marginRight="30dp"/>
 </LinearLayout>

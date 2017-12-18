@@ -17,7 +17,7 @@ import android.widget.LinearLayout;
 public class MainActivity extends AppCompatActivity implements OnClickListener {
 
     //define widget variables
-    private ImageButton playButton, highscoreButton;
+    private ImageButton playButton, highscoreButton, howToPlayButton;
 
     //color variables for background
     private String white = "#FFFFFF";
@@ -45,10 +45,12 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
         //getting reference to widget
         playButton = (ImageButton) findViewById(R.id.playButton);
         highscoreButton = (ImageButton) findViewById(R.id.highscoreButton);
+        howToPlayButton = (ImageButton) findViewById(R.id.howToPlayButton);
 
         //setting onClickListener for buttons
         playButton.setOnClickListener(this);
         highscoreButton.setOnClickListener(this);
+        howToPlayButton.setOnClickListener(this);
 
         //getting background color value from sharedpreference
         savedBackground = getSharedPreferences("savedBackground", MODE_PRIVATE);
@@ -75,12 +77,17 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
                 Intent highscoreIntent = new Intent(this, HighscoreActivity.class);
                 startActivity(highscoreIntent);
                 break;
+            //howtoplaybutton starts new playintent, howtoplayactivity.class
+            case R.id.howToPlayButton:
+                Intent howToPlayIntent = new Intent(this, HowToPlayActivity.class);
+                startActivity(howToPlayIntent);
+                break;
         }
     }
 
     //inflating menu and adding items to the action bar
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main_menu, menu);
+        getMenuInflater().inflate(R.menu.overflow_menu, menu);
         return true;
     }
 
