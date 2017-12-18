@@ -1,19 +1,18 @@
 package nguyen.clickit;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
 
-public class HowToPlayActivity extends AppCompatActivity {
+public class HowToPlayActivity extends AppCompatActivity implements OnClickListener{
 
     //define widget variables
     private Button greenFalseButton, greenTrueButton,
@@ -21,7 +20,7 @@ public class HowToPlayActivity extends AppCompatActivity {
         blueFalseButton, blueTrueButton,
         yellowFalseButton, yellowTrueButton;
 
-
+    private ImageButton menuButton;
 
     //variable color with a default color value
     private String color = "#00FFFF";
@@ -45,6 +44,10 @@ public class HowToPlayActivity extends AppCompatActivity {
         yellowFalseButton = (Button) findViewById(R.id.yellowFalseButton);
         yellowTrueButton = (Button) findViewById(R.id.yellowTrueButton);
 
+        menuButton = (ImageButton) findViewById(R.id.menuButton);
+
+        //setting onClickListener for menubutton
+        menuButton.setOnClickListener(this);
 
         //getting background color value from sharedpreference
         savedBackground = getSharedPreferences("savedBackground", MODE_PRIVATE);
@@ -70,5 +73,17 @@ public class HowToPlayActivity extends AppCompatActivity {
         blueTrueButton.setEnabled(false);
         yellowFalseButton.setEnabled(false);
         yellowTrueButton.setEnabled(false);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+
+            //menubutton starts new mainintent, mainactivity.class
+            case R.id.menuButton:
+                Intent mainIntent = new Intent(this, MainActivity.class);
+                startActivity(mainIntent);
+                break;
+        }
     }
 }

@@ -10,17 +10,12 @@
     tools:context="nguyen.clickit.HowToPlayActivity"
     android:background="#00FFFF">
 
-    <TabWidget
-        android:id="@+id/tabs"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"/>
-
     <ImageView
         android:id="@+id/HowToPlayImage"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="100dp"
         android:src="@drawable/howtoplaytv"
+        android:rotation="-3"
         android:layout_margin="20dp"/>
 
     <LinearLayout
@@ -39,7 +34,8 @@
             android:id="@+id/arrowImage1"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
-            android:src="@drawable/arrow" />
+            android:src="@drawable/arrow"
+            android:rotation="5" />
         <Button
             android:id="@+id/greenTrueButton"
             android:layout_width="50dp"
@@ -63,7 +59,8 @@
             android:id="@+id/arrowImage2"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
-            android:src="@drawable/arrow" />
+            android:src="@drawable/arrow"
+            android:rotation="-5" />
         <Button
             android:id="@+id/redTrueButton"
             android:layout_width="50dp"
@@ -87,7 +84,8 @@
             android:id="@+id/arrowImage3"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
-            android:src="@drawable/arrow" />
+            android:src="@drawable/arrow"
+            android:rotation="5" />
         <Button
             android:id="@+id/blueTrueButton"
             android:layout_width="50dp"
@@ -111,7 +109,8 @@
             android:id="@+id/arrowImage4"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
-            android:src="@drawable/arrow" />
+            android:src="@drawable/arrow"
+            android:rotation="-5" />
         <Button
             android:id="@+id/yellowTrueButton"
             android:layout_width="50dp"
@@ -122,9 +121,22 @@
     <ImageView
         android:id="@+id/infoImage"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="100dp"
         android:src="@drawable/infotv"
+        android:rotation="2"
+        android:layout_marginTop="10dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"/>
+
+    <ImageButton
+        android:id="@+id/menuButton"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:src="@drawable/menutv"
+        style="@style/Image"
+        android:rotation="-3"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="260dp"
+        android:layout_marginRight="30dp"/>
 
 </LinearLayout>

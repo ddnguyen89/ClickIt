@@ -79,8 +79,8 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
                 break;
             //howtoplaybutton starts new playintent, howtoplayactivity.class
             case R.id.howToPlayButton:
-                Intent howToPlayIntent = new Intent(this, HowToPlayActivity.class);
-                startActivity(howToPlayIntent);
+                Intent tabIntent = new Intent(this, TabActivity.class);
+                startActivity(tabIntent);
                 break;
         }
     }
