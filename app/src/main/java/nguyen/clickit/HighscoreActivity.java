@@ -6,6 +6,7 @@ import android.content.SharedPreferences.Editor;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageButton;
@@ -15,20 +16,19 @@ import android.widget.TextView;
 public class HighscoreActivity extends AppCompatActivity implements OnClickListener {
 
     //define widget variables
-    private TextView yourScoreTV, highscoreTV;
+    private TextView userscoreTV, highscoreTV;
     private ImageButton playAgainButton, quitButton, resetScoreButton;
 
     //variables to store and get score and highscore
-    private int userScore;
-    private int highScore;
+    private int userScore = 0;
+    private int highScore = 0;
 
     //variable color with a default color value
     private String color = "#00FFFF";
 
     //creating sharedpreferences to get savedscores
-    private SharedPreferences savedBackground;
-    private SharedPreferences savedScores;
-    Editor editor;
+    private SharedPreferences savedValues;
+    private Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +36,7 @@ public class HighscoreActivity extends AppCompatActivity implements OnClickListe
         setContentView(R.layout.activity_highscore);
 
         //getting reference to the widger
-        yourScoreTV = (TextView) findViewById(R.id.scoreTV);
+        userscoreTV = (TextView) findViewById(R.id.scoreTV);
         highscoreTV = (TextView) findViewById(R.id.highscoreTV);
 
         playAgainButton = (ImageButton) findViewById(R.id.playAgainButton);
@@ -49,22 +49,19 @@ public class HighscoreActivity extends AppCompatActivity implements OnClickListe
         resetScoreButton.setOnClickListener(this);
 
         //getting savedscores from sharedpreferences
-        savedScores = getSharedPreferences("savedScores", MODE_PRIVATE);
-
-        userScore = savedScores.getInt("userScore", 0);
-        highScore = savedScores.getInt("highScore", 0);
-
-        //setting userscore and highscore textview from savedscores
-        yourScoreTV.setText(""+userScore);
-        highscoreTV.setText(""+highScore);
-
-        //getting background color value from sharedpreference
-        savedBackground = getSharedPreferences("savedBackground", MODE_PRIVATE);
-        color = savedBackground.getString("background", "#00FFFF");
+        savedValues = getSharedPreferences("savedValues", MODE_PRIVATE);
 
         //setting stored value into current layout, activity_highscore
         LinearLayout highscore_view = (LinearLayout) findViewById(R.id.activity_highscore);
         highscore_view.setBackgroundColor(Color.parseColor(color));
+
+        //grabbing the values for user and highscore from sharedpreferences
+        userScore = savedValues.getInt("userScore", 0);
+        highScore = savedValues.getInt("highScore", 0);
+
+        //setting userscore and highscore textview from savedscores
+        userscoreTV.setText(userScore);
+        highscoreTV.setText(highScore);
     }
 
     @Override
@@ -86,21 +83,31 @@ public class HighscoreActivity extends AppCompatActivity implements OnClickListe
             //resetscorebutton resets the userscore and highscore
             case R.id.resetScoreButton:
                 //updating values for userscore and highscore
-                editor = savedScores.edit();
+                editor = savedValues.edit();
                 editor.putInt("userScore", 0);
                 editor.putInt("highScore", 0);
 
-                editor.commit();
+                editor.apply();
 
-                userScore = savedScores.getInt("userScore", 0);
-                highScore = savedScores.getInt("highScore", 0);
+                userScore = savedValues.getInt("userScore", 0);
+                highScore = savedValues.getInt("highScore", 0);
 
                 //setting userscore and highscore textview from savedscores
-                yourScoreTV.setText(""+userScore);
-                highscoreTV.setText(""+highScore);
-
+                userscoreTV.setText(userScore);
+                highscoreTV.setText(highScore);
                 break;
         }
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        //getting background color value from sharedpreference
+        color = savedValues.getString("background", "#00FFFF");
+
+        //setting stored value into current layout, activity_highscore
+        LinearLayout highscore_view = (LinearLayout) findViewById(R.id.activity_highscore);
+        highscore_view.setBackgroundColor(Color.parseColor(color));
     }
 }

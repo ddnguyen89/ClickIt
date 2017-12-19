@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/activity_play"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    tools:context="nguyen.clickit.PlayActivity"
+    android:background="#00FFFF">
+
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center_vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/scoreImage"
+                android:layout_width="120dp"
+                android:layout_height="60dp"
+                android:src="@drawable/scoretv"
+                style="@style/Image"
+                android:rotation="-3" />
+
+            <TextView
+                android:id="@+id/scoreTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/score_tv"
+                android:textSize="40sp"
+                style="@style/TextView"
+                android:layout_marginTop="3dp"
+                android:layout_marginLeft="10dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="40dp">
+
+            <ImageView
+                android:id="@+id/timerImage"
+                android:layout_width="100dp"
+                android:layout_height="60dp"
+                android:src="@drawable/timetv"
+                style="@style/Image"
+                android:layout_marginLeft="30dp"
+                android:rotation="3" />
+
+            <TextView
+                android:id="@+id/timeTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/time_tv"
+                android:textSize="40sp"
+                style="@style/TextView"
+                android:layout_marginTop="3dp"
+                android:layout_marginLeft="10dp" />
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/quitButton"
+            android:layout_width="100dp"
+            android:layout_height="70dp"
+            android:src="@drawable/quitbutton"
+            style="@style/Image"
+            android:rotation="-5"
+            android:layout_marginTop="40dp"
+            android:layout_gravity="center_horizontal"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center_vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal">
+
+            <Button
+                android:id="@+id/greenButton"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:background="@drawable/green_button" />
+
+            <Button
+                android:id="@+id/redButton"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:background="@drawable/red_button"
+                android:layout_marginLeft="20dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="20dp"
+            android:gravity="center_horizontal">
+
+            <Button
+                android:id="@+id/blueButton"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:background="@drawable/blue_button" />
+
+            <Button
+                android:id="@+id/yellowButton"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:background="@drawable/yellow_button"
+                android:layout_marginLeft="20dp" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

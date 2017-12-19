@@ -27,10 +27,10 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
     private String yellow = "#EFE373";
     private String colorDefault = "#00FFFF";
 
-    private String color = "#00FFFF";
+    private String color = colorDefault;
 
     //creating sharedpreference to store background values
-    private SharedPreferences savedBackground;
+    private SharedPreferences savedValues;
     Editor editor;
 
     @Override
@@ -53,13 +53,11 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
         howToPlayButton.setOnClickListener(this);
 
         //getting background color value from sharedpreference
-        savedBackground = getSharedPreferences("savedBackground", MODE_PRIVATE);
-        color = savedBackground.getString("background", colorDefault);
+        savedValues = getSharedPreferences("savedValues", MODE_PRIVATE);
 
         //setting stored value into current layout, activity_main
         LinearLayout main_view = (LinearLayout) findViewById(R.id.activity_main);
-        main_view.setBackgroundColor(Color.parseColor(color));
-
+        main_view.setBackgroundColor(Color.parseColor(colorDefault));
     }
 
     //onClick method to display new intent
@@ -108,7 +106,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
                 }
 
                 main_view.setBackgroundColor(Color.parseColor(white));
-                editor = savedBackground.edit();
+                editor = savedValues.edit();
                 editor.putString("background", white).apply();
                 return true;
 
@@ -120,7 +118,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
                 }
 
                 main_view.setBackgroundColor(Color.parseColor(green));
-                editor = savedBackground.edit();
+                editor = savedValues.edit();
                 editor.putString("background", green).apply();
                 return true;
 
@@ -132,7 +130,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
                 }
 
                 main_view.setBackgroundColor(Color.parseColor(red));
-                editor = savedBackground.edit();
+                editor = savedValues.edit();
                 editor.putString("background", red).apply();
                 return true;
 
@@ -144,7 +142,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
                 }
 
                 main_view.setBackgroundColor(Color.parseColor(blue));
-                editor = savedBackground.edit();
+                editor = savedValues.edit();
                 editor.putString("background", blue).apply();
                 return true;
 
@@ -156,7 +154,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
                 }
 
                 main_view.setBackgroundColor(Color.parseColor(yellow));
-                editor = savedBackground.edit();
+                editor = savedValues.edit();
                 editor.putString("background", yellow).apply();
                 return true;
 
@@ -168,12 +166,29 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
                 }
 
                 main_view.setBackgroundColor(Color.parseColor(colorDefault));
-                editor = savedBackground.edit();
+                editor = savedValues.edit();
                 editor.putString("background", colorDefault).apply();
                 return true;
 
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        //getting background color value from sharedpreference
+        color = savedValues.getString("background", colorDefault);
+
+        //setting stored value into current layout, activity_main
+        LinearLayout main_view = (LinearLayout) findViewById(R.id.activity_main);
+        main_view.setBackgroundColor(Color.parseColor(color));
     }
 }

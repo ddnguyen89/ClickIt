@@ -8,20 +8,18 @@ import android.os.CountDownTimer;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import java.util.Random;
 
 public class PlayActivity extends AppCompatActivity implements OnClickListener {
 
     //define widget variables
-    private TextView scoreTV, timeTV;
+    private TextView userScoreTV, timeTV;
     private Button greenButton, redButton, blueButton, yellowButton;
     private ImageButton quitButton;
 
@@ -30,24 +28,23 @@ public class PlayActivity extends AppCompatActivity implements OnClickListener {
     private int user;
 
     //variables to store score and highscore
-    private int score = 0;
-    private int highscore;
+    private int userScore = 0;
+    private int highScore;
 
     //variable color with a default color value
     private String color = "#00FFFF";
 
     //countdowntimer with timelimit for game
     CountDownTimer timer;
-    private int timeLimit = 12000;
+    private long timeLimit = 12000;
 
     //creating a handler to set a delay for when the game starts
-    Handler setDelay = new Handler();
-    Runnable startDelay;
+    private Handler setDelay = new Handler();
+    private Runnable startDelay;
 
-    //creating sharedpreferences to get savedbackground and store savedscores
-    private SharedPreferences savedBackground;
-    private SharedPreferences savedScores;
-    Editor editor;
+    //creating sharedpreferences to get savedbackground and store savedValues
+    private SharedPreferences savedValues;
+    private Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +52,7 @@ public class PlayActivity extends AppCompatActivity implements OnClickListener {
         setContentView(R.layout.activity_play);
 
         //getting reference to the widget
-        scoreTV = (TextView) findViewById(R.id.scoreTV);
+        userScoreTV = (TextView) findViewById(R.id.scoreTV);
         timeTV = (TextView) findViewById(R.id.timeTV);
 
         greenButton = (Button) findViewById(R.id.greenButton);
@@ -73,20 +70,19 @@ public class PlayActivity extends AppCompatActivity implements OnClickListener {
 
         quitButton.setOnClickListener(this);
 
-        //getting background color value from sharedpreference
-        savedBackground = getSharedPreferences("savedBackground", MODE_PRIVATE);
-        color = savedBackground.getString("background", "#00FFFF");
+        //setting savedValues from sharedpreferences with userscore of 0;
+        savedValues = getSharedPreferences("savedValues", MODE_PRIVATE);
 
         //setting stored value into current layout, activity_play
         LinearLayout play_view = (LinearLayout) findViewById(R.id.activity_play);
         play_view.setBackgroundColor(Color.parseColor(color));
 
-        //setting savedscores from sharedpreferences with userscore of 0;
-        savedScores = getSharedPreferences("savedScores", MODE_PRIVATE);
-        editor = savedScores.edit();
-        editor.putInt("userScore", 0).commit();
+        //setting userscore value in sharedpreferences back to 0
+        editor = savedValues.edit();
+        editor.putInt("userScore", 0).apply();
 
-        highscore = savedScores.getInt("highScore", 0);
+        //setting highscore value from sharedpreferences
+        highScore = savedValues.getInt("highScore", 0);
 
         //setting all buttons enabled to false
         //prevents click during delay
@@ -143,7 +139,9 @@ public class PlayActivity extends AppCompatActivity implements OnClickListener {
             //if user hits quitbutton, cancel countdowntimer
             //starts new mainintent, mainactivity.class
             case R.id.quitButton:
-                timer.cancel();
+                if(timer != null) {
+                    timer.cancel();
+                }
                 Intent mainIntent = new Intent(this, MainActivity.class);
                 startActivity(mainIntent);
                 break;
@@ -156,26 +154,16 @@ public class PlayActivity extends AppCompatActivity implements OnClickListener {
 
         //if user input matches simon's input
         //add 1 to score, update score
-        //if userscore is greater than highscore, update highscore
+        //if userscore is greater than highScore, update highScore
         //store scores in savedvaluse
         if (simon == user) {
             matchStatement = true;
-            score += 1;
-            scoreTV.setText(""+score);
+            userScore += 1;
+            userScoreTV.setText("" + userScore);
 
-            editor = savedScores.edit();
-            editor.putInt("userScore", score);
-            editor.putInt("highScore", highscore);
-
-            if(score > highscore) {
-                highscore = score;
-                Log.d("userScore", ""+score);
-                Log.d("Highscore", ""+highscore);
-                editor.putInt("highScore", score);
-            }
-            editor.commit();
-
+            saveScores();
         } else {
+            saveScores();
             matchStatement = false;
         }
         return matchStatement;
@@ -208,53 +196,59 @@ public class PlayActivity extends AppCompatActivity implements OnClickListener {
         simonFlash(simon);
 
         //create countdowntimer for the game
-        timer = new CountDownTimer(timeLimit,100) {
+        timer = new CountDownTimer(timeLimit, 100) {
 
             //update the time textview to show user how much time they have left
             @Override
             public void onTick(long millisUntilFinished) {
-                timeTV.setText(""+millisUntilFinished/100);
+                timeTV.setText("" + millisUntilFinished / 100);
             }
 
             //when time is finished,
             //save the scores with sharedpreferences
             //cancel the timer
-            //starts new highscoreintent, highscoreactivity.class
+            //starts new highScoreintent, highScoreactivity.class
             @Override
             public void onFinish() {
-                editor = savedScores.edit();
-                editor.putInt("userScore", score);
-                editor.putInt("highScore", highscore);
+                //call savescores function
+                saveScores();
 
-                if(score > highscore) {
-                    highscore = score;
-                    Log.d("userScore", ""+score);
-                    Log.d("Highscore", ""+highscore);
-                    editor.putInt("highScore", score);
-                }
-
-                editor.commit();
-
-                if(isFinishing())
+            if(isFinishing())
+                if(timer != null) {
                     timer.cancel();
-
-                Intent highscoreIntent = new Intent(getApplicationContext(), HighscoreActivity.class);
-                startActivity(highscoreIntent);
+                }
+                Intent highScoreIntent = new Intent(getApplicationContext(), HighscoreActivity.class);
+                startActivity(highScoreIntent);
             }
         }.start();
     }
 
+    //save score values for shared preferences
+    public void saveScores(){
+        editor = savedValues.edit();
+        editor.putInt("userScore", userScore);
+        editor.putInt("highScore", highScore);
+
+        //if userscore is greater than highscore, set highscore to userscore and save it
+        if(userScore > highScore) {
+            highScore = userScore;
+            editor.putInt("highScore", highScore);
+        }
+        editor.apply();
+    }
+
     //if the user matches simon's action, give simon a new number and light it up
-    //if not, cancel the timer and start new highscoreintent, highscoreactivity.class
+    //if not, cancel the timer and start new highScoreintent, highScoreactivity.class
     public void checked() {
         if (checkMatch(simon, user) == true) {
             randomNumber();
             simonFlash(simon);
         } else {
-            timer.cancel();
-
-            Intent highscoreIntent = new Intent(this, HighscoreActivity.class);
-            startActivity(highscoreIntent);
+            if(timer != null) {
+                timer.cancel();
+            }
+            Intent highScoreIntent = new Intent(this, HighscoreActivity.class);
+            startActivity(highScoreIntent);
         }
     }
 
@@ -268,6 +262,36 @@ public class PlayActivity extends AppCompatActivity implements OnClickListener {
             blueButton.setPressed(true);
         } else if (simon == 4) {
             yellowButton.setPressed(true);
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        //if there is a timer, cancel it
+        if(timer != null) {
+            timer.cancel();
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        //getting background color value from sharedpreference
+        color = savedValues.getString("background", "#00FFFF");
+
+        //setting stored value into current layout, activity_play
+        LinearLayout play_view = (LinearLayout) findViewById(R.id.activity_play);
+        play_view.setBackgroundColor(Color.parseColor(color));
+
+        //onresume, if there is a timer, cancel it and go to highscoreactivity
+        if(timer != null) {
+            timer.cancel();
+
+            Intent highScoreIntent = new Intent(this, HighscoreActivity.class);
+            startActivity(highScoreIntent);
         }
     }
 }
