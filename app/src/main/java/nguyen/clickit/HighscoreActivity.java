@@ -60,8 +60,8 @@ public class HighscoreActivity extends AppCompatActivity implements OnClickListe
         highScore = savedValues.getInt("highScore", 0);
 
         //setting userscore and highscore textview from savedscores
-        userscoreTV.setText(userScore);
-        highscoreTV.setText(highScore);
+        userscoreTV.setText(""+userScore);
+        highscoreTV.setText(""+highScore);
     }
 
     @Override
@@ -93,8 +93,8 @@ public class HighscoreActivity extends AppCompatActivity implements OnClickListe
                 highScore = savedValues.getInt("highScore", 0);
 
                 //setting userscore and highscore textview from savedscores
-                userscoreTV.setText(userScore);
-                highscoreTV.setText(highScore);
+                userscoreTV.setText(""+userScore);
+                highscoreTV.setText(""+highScore);
                 break;
         }
     }
